@@ -71,28 +71,36 @@ const next = document.querySelector('.next');
 
 
 prev.addEventListener('click',function(){
-    // rimuovo la classe active dall'elemento con indice counter
-    itemsCollection[counter].classList.remove('active');
-    thumbsCollection[counter].classList.remove('active');
-    counter--;
-    // se è inferiore a 0 deve  prendere l'ultimo elemento
-    if(counter < 0) counter = items.length - 1;
-    console.log(counter);
-    // aggiungo active al nuovo elemento con indice counter
-    itemsCollection[counter].classList.add('active');
-    thumbsCollection[counter].classList.add('active');
+    
+    prevNext('prev');
     
 })
 
 next.addEventListener('click',function(){
+    
+    prevNext('next')
+
+})
+
+
+function prevNext(direzione){
     // rimuovo la classe active dall'elemento con indice counter
     itemsCollection[counter].classList.remove('active');
     thumbsCollection[counter].classList.remove('active');
-    counter++;
-    // se è uguale alla lunghezza dell'array prendo il primo elemento
-    if(counter === items.length) counter = 0;
-    console.log(counter);
+
+    if(direzione === 'prev'){
+        // se è inferiore a 0 deve  prendere l'ultimo elemento
+        counter--;
+        if(counter < 0) counter = items.length - 1;
+        console.log(counter);
+    } else {
+        counter++;
+        // se è uguale alla lunghezza dell'array prendo il primo elemento
+        if(counter === items.length) counter = 0;
+        console.log(counter);
+    }
+
     // aggiungo active al nuovo elemento con indice counter
     itemsCollection[counter].classList.add('active');
     thumbsCollection[counter].classList.add('active');
-})
+}
